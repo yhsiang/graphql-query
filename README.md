@@ -17,3 +17,8 @@ console.log(Generator(data))
 
 1. `$ npm install`
 2. `$ npm test`
+
+
+# License
+
+MIT
