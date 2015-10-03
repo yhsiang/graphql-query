@@ -25,4 +25,19 @@ describe('generator', () => {
     const expected = `bills {\n  id\n  abstract\n  sponsors {\n    name\n  }\n  cosponsors {\n    name\n  }\n}`
     expect(Generator(data)).to.equal(expected);
   });
+
+  it('should return graphql query with mongo-style condition.', () => {
+    const data = { bill:
+      {
+        id: "1537L17367",
+        abstract: "本院委員林國正等20人，鑑於促進....",
+        sponsors: [ {name: "林國正"} ],
+        cosponsors: [ {name: "孫大千"} ]
+      }
+    };
+    const expected = `bill(id: 1537L17367) {\n  id\n  abstract\n  sponsors {\n    name\n  }\n  cosponsors {\n    name\n  }\n}`
+    expect(Generator(data, {
+      bill: { id: { $eq: "1537L17367" } }
+    })).to.equal(expected);
+  });
 });
