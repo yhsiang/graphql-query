@@ -17,7 +17,7 @@ function parseCondition(name:string, query: Object): string {
   return `${name}(${result.join(',')})`;
 }
 
-export default function generator(obj: Object, query: Object): string {
+export default function generator(obj: Object, query: ?Object): string {
   let name = Object.keys(obj).reduce(acc => acc);
 
   if (Object.prototype.toString.call(obj[name]) === '[object Array]') {
